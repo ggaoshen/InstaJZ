@@ -126,3 +126,8 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 # STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+LOGIN_REDIRECT_URL = 'posts' # where to redirect after successful login
+LOGOUT_REDIRECT_URL = 'posts' # where to redirect after logout
+
+AUTH_USER_MODEL = 'Insta.InstaUser' # tell project to use customized user model instead of default

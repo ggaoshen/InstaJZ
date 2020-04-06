@@ -1,6 +1,7 @@
 from django.db import models
 from imagekit.models import ProcessedImageField # need to add imagekit to app directory, otw can't import
 from django.urls import reverse
+from django.contrib.auth.models import AbstractUser # customized user base class
 
 # Create your models here.
 class Post(models.Model):
@@ -27,3 +28,13 @@ class PostTwo(models.Model):
         blank = True, 
         null = True
     )
+
+class InstaUser(AbstractUser):
+    # profile_pic is in addition to what AbstractUser already defines, like username, pw, etc. 
+    profile_pic = ProcessedImageField(
+        upload_to = 'static/images/profiles',
+        format = 'JPEG', 
+        options = {'quality': 100}, 
+        blank = True, 
+        null = True
+    ) # need to specify AUTH_USER_MODEL in settings.py
