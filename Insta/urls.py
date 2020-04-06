@@ -15,11 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
-from Insta.views import HelloWorld
+from Insta.views import HelloWorld, PostsView
 
 urlpatterns = [
-    path('', HelloWorld.as_view(), name='helloworld')
-    # '' means don't input anything, url as is
-    # as_view() function is a TemplateView default method
-    # TemplateView details: https://ccbv.co.uk/projects/Django/3.0/django.views.generic.base/TemplateView/
+    path('', HelloWorld.as_view(), name='helloworld'), 
+    path('posts/', PostsView.as_view(), name='posts'), 
 ]
+
+# '' means don't input anything, url as is
+# as_view() function is a TemplateView default method
+# TemplateView details: https://ccbv.co.uk/projects/Django/3.0/django.views.generic.base/TemplateView/
