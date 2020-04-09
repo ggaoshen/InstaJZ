@@ -1,6 +1,12 @@
+{% extends 'base.html' %} <!-- extend base template -->
+
+{% block content %} <!-- start of definition of actual content block -->
+
 <h1> Sign Up </h1>
 <form method="post" enctype='multipart/form-data'>
     {% csrf_token %}
     {{ form.as_p}}
     <button type="submit">Sign Up</button>
 </form>
+
+{% endblock content %} <!-- end of definition of actual content block -->

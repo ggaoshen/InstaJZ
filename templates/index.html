@@ -1,22 +1,82 @@
-{% load static %}
+{% extends "base.html" %}
 
-<ul>
-    {% if request.user.is_authenticated %}
-        <li>
-            Hi, {{request.user.username}}
-        </li>
-        <li>
-            <a href="{% url 'logout' %}"> Logout </a>
-        </li>
-    {% else %}
-        <li>
-            <a href="{% url 'login' %}"> Login </a>
-        </li>
-        <li>
-            <a href="{% url 'signup' %}"> Signup </a>
-        </li>
-    {% endif %}
-</ul>
+{% load custom_tags %} <!-- self-defined python package under Insta/templatetags/custom_tags -->
+
+{% block content %}
+
+<div class="cards-listing">
+    {% for post in object_list %} <!-- object_list is provided by PostsView(ListView) as a list of Post objects -->
+        <div class="row"> <!-- define a row-->
+            <div class="card view-update {{ post.pk }}">
+
+                <div class="card__panel-head">
+                    <div class="poster__info"> <!-- this is a horizontal bar -->                        
+                        <a href="{% url 'user_detail' post.author.pk %}" class="poster__name">
+                            {% if post.author.profile_pic %}
+                                <img class="poster__profilepic" src="/{{ post.author.profile_pic}}">
+                            {% endif %}
+                            {{ post.author.username }}
+                        </a>
+                        <span class="poster__timestamp">
+                            {{ post.posted_on|timesince }}
+                        </span>
+                    </div>
+                </div> 
+
+                <a href="{% url 'post_detail' post.pk %}"> <!-- include image and link to to post -->
+                    <img class="card__main-image" src="/{{ post.image.url }}">
+                </a>
+                
+
+                <div class="card__panel-body"> <!-- create another card panel for # of likes and comments-->
+                    <!-- show like counts-->
+                    <div class="likes">
+                        {% if post.get_like_count %} <!-- need to define function in post model-->
+                            {{ post.get_like_count }} like{% if post.get_like_count > 1 %}s{% endif %} <!-- plural handling! -->
+                        {% endif %}
+
+                    <!-- show list of comments-->
+                    </div>
+                    <ul class="comment-list">
+                        <a class="view-more"></a>
+                        {% for comment in post.comments.all %}
+                        <li class="comment-list__comment">
+                            <a href="{% url 'user_detail' comment.user.pk %}" class="user">
+                                {{ comment.user.username }}
+                            </a>
+                            <span class="comment">{{ comment.comment }}</span>
+                        </li>
+                        {% endfor %}
+                    </ul>
+
+                    <section class="input-row"> <!-- input block -->
+                        <i class="fa {% has_user_liked_post post user %} submit-like" aria-hidden="true"></i> <!-- display red heart/empty heart by function "has_user_liked_post, need to write in custom_tags" -->
+                        <div class="comment-input-wrapper">
+                            <input class="add-comment" type="text" placeholder="Add a comment...">
+                        </div>
+
+                        <div class="hidden-data {{ post.pk }}" style="display: none;"> <!-- create division to store hidden data: post's pk. This is used for Ajax to create like for the right post pk-->
+                            <span class="post-pk">{{ post.pk }}</span>
+                        </div>
+                    </section>
+                </div> 
+
+            </div>
+        </div>
+    {% endfor %}
+</div>
+
+{% endblock content %}
+
+
+
+
+{% comment %} 
+
+First version, before adding comment/likes, javascript stuff
+{% extends 'base.html' %} <!-- extend base template -->
+
+{% block content %} <!-- start of definition of actual content block -->
 
 <div>
     <a href="{% url 'make_post' %}">
@@ -32,3 +92,6 @@
     {% endfor %}
 
 </div>
+
+{% endblock content %} <!-- end of definition of actual content block --> 
+{% endcomment %}

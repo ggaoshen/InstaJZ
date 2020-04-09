@@ -21,5 +21,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('insta/', include('Insta.urls')), 
     path('auth/', include('django.contrib.auth.urls')), # use django.contrib.auth app's url routing
-    path('auth/signup/', SignUp.as_view(), name='signup')
+    path('auth/signup/', SignUp.as_view(), name='signup'), 
 ]

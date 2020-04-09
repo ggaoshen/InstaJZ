@@ -1,6 +1,12 @@
+{% extends 'base.html' %} <!-- extend base template -->
+
+{% block content %} <!-- start of definition of actual content block -->
+
 <h1> Delete Post </h1>
 <form action="" method="post" enctype="multipart/form-data">
     {% csrf_token %}
     <p> Do you want to delete "{{post.title}}" ? </p>
     <button type="submit">Delete</button>
 </form>
+
+{% endblock content %} <!-- end of definition of actual content block -->

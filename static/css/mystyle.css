@@ -1,0 +1,12 @@
+li a { 
+    /* li: list item
+        li a: first item in list, change color to red */
+    color: red;
+    font-size: 40px;
+}
+
+.update-post { 
+    /* define style for update-post anchor class */
+    color: pink;
+    font-size: 20px;
+}

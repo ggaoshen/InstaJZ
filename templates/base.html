@@ -1,0 +1,36 @@
+<html>
+
+    {% load static %} <!-- load static directory -->
+
+    <head>
+        <meta charset='utf-8'> <!-- html meta data: utf-8, not support chinese -->
+        <meta name="viewport" content="width=device-width"> <!-- how it displays on cellphone -->
+        <title>JZ Insta</title> <!-- title of page-->
+        {% comment %} <link href="{% static 'css/mystyle.css' %}" rel="stylesheet"> <!-- mystyle.css in static folder --> {% endcomment %}
+        <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet"> <!-- css style: font color, size, blah-->
+        <link href="{% static 'vendor/font-awesome-4.6.3/css/font-awesome.min.css' %}" rel="stylesheet"> <!-- "static" means staticfiles_dirs in settings.py-->
+        <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    </head>
+
+   <body>
+        {% include 'header.html' %} <!-- inherit from header.html -->
+        
+        <div class="content-wrapper">
+            <div class="container">
+                {% block content %} <!-- content is a placeholder for actual body of page, to be defined when extending this base.html-->
+                {% endblock content%}
+            </div>
+        </div>
+
+        {% comment %} add javascript/ajax module {% endcomment %}
+        <script type="text/javascript" src="{% static 'js/jquery-3.1.0.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/ajax-csrf-auth.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/index.js' %}"></script>
+
+        {% block extrascript %}
+        {% endblock %}
+
+    </body>
+
+</html>
