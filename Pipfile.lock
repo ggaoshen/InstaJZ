@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "3e124b53cb67533b33bc48fb562eb9cb3f077996ade4ffb97ab2f881116a1461"
+            "sha256": "78f2649a158f48c4d4951655c545d014a26b88d4a50f27489f9085089a4b0ce8"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -46,6 +46,14 @@
             ],
             "index": "pypi",
             "version": "==4.0.2"
+        },
+        "gunicorn": {
+            "hashes": [
+                "sha256:1904bb2b8a43658807108d59c3f3d56c2b6121a701161de0ddf9ad140073c626",
+                "sha256:cd4a810dd51bf497552cf3f863b575dabd73d6ad6a91075b65936b151cbf4f9c"
+            ],
+            "index": "pypi",
+            "version": "==20.0.4"
         },
         "pilkit": {
             "hashes": [
@@ -94,6 +102,14 @@
                 "sha256:8f3cd2e254d8f793e7f3d6d9df77b92252b52637291d0f0da013c76ea2724b6c"
             ],
             "version": "==1.14.0"
+        },
+        "whitenoise": {
+            "hashes": [
+                "sha256:0f9137f74bd95fa54329ace88d8dc695fbe895369a632e35f7a136e003e41d73",
+                "sha256:62556265ec1011bd87113fb81b7516f52688887b7a010ee899ff1fd18fd22700"
+            ],
+            "index": "pypi",
+            "version": "==5.0.1"
         }
     },
     "develop": {}
